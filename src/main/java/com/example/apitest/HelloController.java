@@ -1,6 +1,8 @@
 package com.example.apitest;
 
 import com.google.gson.*;
+
+import static functions.functions.*;
 import javafx.fxml.FXML;
 import java.net.http.*;
 import java.net.URI;
@@ -13,6 +15,22 @@ public class HelloController {
 
     public static class CardInfo {
         public ArrayList<Data> data = new ArrayList<>();
+        public void printList() {
+            for (Data dat : data) {
+                print("\n" + dat.id + "\n" + dat.name + "\n");
+                if (!(dat.type.equals("Spell Card") || dat.type.equals("Trap Card")))
+                    print(dat.level + dat.linkval + "\n" + dat.attribute + "\n");
+                print(dat.race + "\n" + dat.type + "\n");
+                if (dat.type.equals("Pendulum Effect Monster") || dat.type.equals("Pendulum Normal Monster"))
+                    print(dat.scale + "\n");
+                print(dat.desc + "\n");
+                if (!(dat.type.equals("Spell Card") || dat.type.equals("Trap Card")))
+                    print(dat.atk + "\n" + dat.def + "\n");
+                for (String s : dat.linkmarkers) print(s + " ");
+                if (dat.type.equals("Link Monster")) print("\n");
+                print(dat.card_images.get(0).image_url + "\n");
+            }
+        }
     }
 
     public static class Data {
@@ -25,11 +43,12 @@ public class HelloController {
     }
 
     public static class CardSet {
-        public String set_name,
-                set_code,
-                set_price,
-                set_rarity,
-                set_rarity_code;
+        public String
+             set_name,
+             set_code,
+             set_price,
+             set_rarity,
+             set_rarity_code;
     }
 
     public static class CardImage {
@@ -39,11 +58,12 @@ public class HelloController {
     }
 
     public static class CardPrice {
-        public String coolstuffinc_price,
-                cardmarket_price,
-                tcgplayer_price,
-                amazon_price,
-                ebay_price;
+        public String
+            coolstuffinc_price,
+            cardmarket_price,
+            tcgplayer_price,
+            amazon_price,
+            ebay_price;
     }
 
     public static CardInfo requestCard(String searchParam) throws Exception {
@@ -56,7 +76,6 @@ public class HelloController {
                 .thenAccept(com.example.apitest.HelloController::sendToVar)
                 .join();
         Gson cardHold = new Gson();
-        CardInfo cardtest = cardHold.fromJson(var, CardInfo.class);
-        return cardtest;
+        return cardHold.fromJson(var, CardInfo.class);
     }
 }
