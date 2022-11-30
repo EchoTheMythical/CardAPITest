@@ -1,7 +1,5 @@
 package com.example.apitest;
 import javafx.application.Application;
-import static com.example.apitest.HelloController.*;
-import static functions.functions.*;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 import javafx.scene.Scene;

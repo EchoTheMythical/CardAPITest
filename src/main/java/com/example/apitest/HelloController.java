@@ -4,14 +4,11 @@ import com.google.gson.*;
 
 import static functions.functions.*;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 
 import java.net.http.*;
 import java.net.URI;
@@ -29,14 +26,14 @@ public class HelloController {
     public static String var;
     public static void sendToVar(String in) { var = in; }
 
-    public void previousCard(ActionEvent actionEvent) {
+    public void previousCard() {
         if (crntCard > 0) crntCard--;
         Data dat = crntSet.data.get(crntCard);
         imageview.setImage(new Image(dat.card_images.get(0).image_url));
         setCardInfo(dat);
     }
 
-    public void nextCard(ActionEvent actionEvent) {
+    public void nextCard() {
         if (crntCard + 1 < crntSet.data.size()) crntCard++;
         Data dat = crntSet.data.get(crntCard);
         imageview.setImage(new Image(dat.card_images.get(0).image_url));
@@ -80,11 +77,11 @@ public class HelloController {
         else if (mouseEvent.getButton() == MouseButton.SECONDARY && !cardInfo.isVisible()) cardInfo.setVisible(true);
     }
 
-    public void hideCardInfo(MouseEvent mouseEvent) {
+    public void hideCardInfo() {
         if (!cardInfo.getText().equals("")) cardInfo.setVisible(false);
     }
 
-    public void showCardInfo(MouseEvent mouseEvent) {
+    public void showCardInfo() {
         if (!cardInfo.getText().equals("")) cardInfo.setVisible(true);
     }
 
