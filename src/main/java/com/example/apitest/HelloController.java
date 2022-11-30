@@ -16,8 +16,9 @@ public class HelloController {
     }
 
     public static class Data {
-        public int id, atk, def, level;
-        public String name, type, desc, race, attribute;
+        public int id, atk, def, level, scale, linkval;
+        public String name, type, desc, race, attribute, archetype;
+        public ArrayList<String> linkmarkers = new ArrayList<>();
         public ArrayList<CardSet> card_sets = new ArrayList<>();
         public ArrayList<CardImage> card_images = new ArrayList<>();
         public ArrayList<CardPrice> card_prices = new ArrayList<>();
