@@ -18,14 +18,7 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) throws Exception {
-        String usrIn = getStr();
-        StringBuilder temp = new StringBuilder();
-        for (int i = 0; i < usrIn.length(); i++) {
-            if (usrIn.charAt(i) == ' ') temp.append("%20");
-            else temp.append(usrIn.charAt(i));
-        }
-        requestCard(temp.toString()).printList();
+    public static void main(String[] args) {
         launch();
     }
 }
