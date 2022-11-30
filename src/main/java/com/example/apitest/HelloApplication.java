@@ -1,14 +1,15 @@
 package com.example.apitest;
-
 import javafx.application.Application;
+import static functions.functions.*;
+import static com.example.apitest.HelloController.*;
 import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.util.*;
-import java.net.URI;
-import java.net.http.*;
 import com.google.gson.*;
+import java.net.http.*;
+import java.net.URI;
+import java.util.*;
 
 public class HelloApplication extends Application {
 
@@ -21,8 +22,15 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
-        Gson cardHold = new Gson();
+    public static void main(String[] args) throws Exception {
+        String usrIn = getStr();
+        StringBuilder temp = new StringBuilder();
+        for (int i = 0; i < usrIn.length(); i++) {
+            if (usrIn.charAt(i) == ' ') temp.append("%20");
+            else temp.append(usrIn.charAt(i));
+        }
+        CardInfo testcard = requestCard(temp.toString());
+        for(int i  = 0; i < testcard.data.size(); i++) print(testcard.data.get(i).id + "\n" + testcard.data.get(i).name + "\n" + testcard.data.get(i).type + "\n" + testcard.data.get(i).desc + "\n" + testcard.data.get(i).race + "\n" + testcard.data.get(i).attribute + "\n");
         launch();
     }
 }
